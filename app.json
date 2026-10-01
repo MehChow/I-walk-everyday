@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "I Walk Everyday",
+    "slug": "i-walk-everyday",
+    "version": "1.0.0",
+    "scheme": "iwalkeveryday",
+    "platforms": ["android"],
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "icon": "./assets/images/icon.png",
+    "android": {
+      "package": "com.mehchow.iwalkeveryday",
+      "allowBackup": false,
+      "permissions": ["android.permission.POST_NOTIFICATIONS", "android.permission.health.WRITE_STEPS"],
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundColor": "#101716"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      ["expo-build-properties", {"android": {"minSdkVersion": 34}}],
+      ["expo-splash-screen", {"backgroundColor": "#101716", "image": "./assets/images/icon.png", "imageWidth": 96}],
+      "./plugins/with-fake-walk"
+    ],
+    "experiments": {"typedRoutes": true}
+  }
+}

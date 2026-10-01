@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <uses-permission android:name="android.permission.health.WRITE_STEPS" />
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+  <application>
+    <activity android:name=".WalkPermissionActivity" android:exported="false" android:theme="@android:style/Theme.Material.NoActionBar" />
+    <activity android:name=".PermissionRationaleActivity" android:exported="true" android:theme="@android:style/Theme.Material.NoActionBar" />
+  </application>
+</manifest>
