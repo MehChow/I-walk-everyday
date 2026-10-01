@@ -1,5 +1,12 @@
 # Execution ledger — plan: .scratch/fake-pedometer/spec.md
 
+Current handoff: `docs/development-handoff.md` (2026-10-01). Implementation and
+launch-crash fix complete; user reports successful background notification and
+external ingestion of 1,000 steps. Remaining device acceptance is tracked in
+issue 03. Next session: UI refinement, scope/design still to be agreed.
+At wrap-up HEAD is 623f5dd on dev; implementation and crash fix are committed.
+Only this documentation wrap-up remains uncommitted.
+
 Approved plan: user message, 2026-10-01. Execution inline, review with GPT-6 Luna High.
 
 Tasks:
@@ -28,8 +35,8 @@ SQLite pruning's integration test caught unavailable JSON1; replaced with decode
 row filtering and parameterized deletion, and all storage tests passed.
 Task 3: complete — main screen, confirmation, recovery and history, dark teal theme,
 large-font preset reflow, scrollable sheet and explicit input semantics.
-Task 4: local checks/builds complete; final APK refresh passed. Physical
-acceptance unavailable: adb devices still has no connected device.
+Task 4 at initial build completion: local checks/builds complete; APK refresh
+passed. No device was attached then; see subsequent device evidence below.
 Ruling: hoisted pnpm layout — isolated dependency paths caused CMake/Ninja rebuild
 loops on Windows. Clean prebuild with hoisted dependencies produced both APKs.
 Ruling: add an explicit splash image — SDK 57's no-image plugin configuration
@@ -45,3 +52,10 @@ after final UI changes (Gradle build 1m11s). Device acceptance is still pending.
 
 Launch-crash fix: SDK 57 universal UI forwards percentage widths into integer Compose modifiers. Replaced six affected Button/TextInput/Column widths with fillMaxWidth(); retained valid React Native Host/progress widths. Added source-level regression check that failed on all six original sites and now passes. TypeScript/lint clean, all 21 JS tests pass. Existing standalone APK predates this JS fix; dev client loads it from Metro.
 Device launch verification: connected Samsung SM_S9360 reopened against running Metro; app process remained alive and UI hierarchy contained the step-target field and preset labels. No AndroidRuntime/ReactNativeJS errors appeared in the inspected log window. Permission and session acceptance checks were not exercised.
+
+Session wrap-up, 2026-10-01: user reports 1,000 steps completed after closing the
+app and waiting 12 minutes, notification delivered, and an external app reading
+the additional 1,000 steps. Agent observed the saved result and main-screen
+scrolling via scrcpy-mcp. Correcting SCRCPY_SERVER_PATH to the server file enabled
+the fast session and video capture (screenshot source scrcpy). Remaining acceptance
+checks and UI refinement handoff are documented in docs/development-handoff.md.

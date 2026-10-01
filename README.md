@@ -7,6 +7,9 @@ or guarantee that another app accepts the records.
 Expo SDK 57 · React Native · pnpm · Expo UI · Kotlin · SQLite · WorkManager.
 No backend or EAS is used. The UI is dark only.
 
+For the implementation map, session results, remaining device checks, and
+scrcpy-mcp setup, see [Development handoff](docs/development-handoff.md).
+
 ## Develop on a real Android phone
 
 Requirements: Node.js 24+, pnpm 10.30.3, Android Studio with its SDK and JDK,
@@ -95,3 +98,9 @@ behavior is not an acceptance requirement. No exact-alarm permission is requeste
 
 Actual record publication and notification delivery require a physical device;
 unit tests and a successful APK build alone do not prove those behaviors.
+
+On 2026-10-01, the user reported a successful 1,000-step walk after closing the
+app: a completion notification arrived after 12 minutes, and another app read
+the additional 1,000 steps. The remaining checklist items still need verification.
+The earlier standalone APK predates the Expo UI percentage-width crash fix;
+rebuild it before standalone testing. The development client loads that fix from Metro.
