@@ -1,8 +1,11 @@
+export const MIN_STEPS = 10;
+export const MAX_STEPS = 20000;
+
 export function parseStepTarget(value: string): number | null {
   const trimmed = value.trim();
   if (!/^\d+$/.test(trimmed)) return null;
   const steps = Number(trimmed);
-  return Number.isInteger(steps) && steps >= 50 && steps <= 10000 ? steps : null;
+  return Number.isInteger(steps) && steps >= MIN_STEPS && steps <= MAX_STEPS ? steps : null;
 }
 
 export function walkDuration(steps: number): number {

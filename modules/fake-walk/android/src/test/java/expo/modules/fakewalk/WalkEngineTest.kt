@@ -56,8 +56,19 @@ class WalkEngineTest {
     assertEquals(s, f.store.get(s.id)); assertEquals(listOf(36_000L), f.delays)
   }
   @Test fun rejectsInvalidTargets() = runBlocking {
-    for (steps in listOf(49, 10001)) {
+    for (steps in listOf(9, 20001)) {
       try { Fixture().engine.start(steps); fail("invalid target accepted") } catch (_: IllegalArgumentException) {}
+    }
+  }
+  @Test fun acceptsExpandedRangeAndPublishesChosenCount() = runBlocking {
+    for (steps in listOf(10, 49, 10001, 20000)) {
+      val f = Fixture(); val s = f.engine.start(steps)
+      val duration = steps * 720L
+      assertEquals(duration, s.finishAt - s.startedAt)
+      assertEquals(listOf(duration), f.delays)
+      f.clock.advance(duration)
+      assertEquals(Publication.DONE, f.engine.publish(s.id))
+      assertEquals(mapOf(s.id to steps), f.records)
     }
   }
   @Test fun doesNotStartWithoutPermissions() = runBlocking {

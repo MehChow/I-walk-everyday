@@ -36,7 +36,7 @@ class WalkEngine(
   private fun active(): WalkSession? = store.all().firstOrNull { it.status == "running" || it.status == "publishing" }
 
   suspend fun start(steps: Int): WalkSession = publicationLock.withLock {
-    require(steps in 50..10000) { "Choose a whole number from 50 to 10,000 steps." }
+    require(steps in 10..20000) { "Choose a whole number from 10 to 20,000 steps." }
     if (!permissions.granted()) throw SecurityException("Allow step saving and notifications before starting.")
     val session = store.transaction {
       check(active() == null) { "A walk is already in progress." }
